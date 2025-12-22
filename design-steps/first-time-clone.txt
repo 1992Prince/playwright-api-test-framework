@@ -1,0 +1,21 @@
+1️⃣Once you clone repo and to install dependeciess run below command
+
+ npm install - This installs all dependencies listed in package.json
+ 📌 This will install:
+
+Playwright
+TypeScript
+Test runner
+Any framework-specific libraries
+
+2️⃣ Install Playwright Browsers (Very Important)
+
+Even if Playwright is already in node_modules, browsers are not always installed.
+npx playwright install
+
+Optional (recommended for CI):
+npx playwright install --with-deps
+
+
+Then first we need to run independent tests inside this framework that is Regression Tests inside tests/conduit
+command - npx playwright test tests/conduit/regressionTests.spec.ts

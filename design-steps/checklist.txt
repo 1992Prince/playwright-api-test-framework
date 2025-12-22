@@ -1,0 +1,112 @@
+-> IApiClient
+-> Custom Error Handling
+-> TestData Management via POJO
+-> Reporting with proper logs
+-> logs
+-> what SOLID Principles are implemented in framework - Fluent Design Pattern[Builder Pattern]
+-> Execution happens in sequential manner in one worker
+-> what validations we do for our api tests
+-> Env or Configration management setup and what design pattern we used here and Y?
+-> Fixtures and hooks
+-> importing objects from other files like json objects internally works like Singleton Design Pattern
+-> Find failure root cause - Application issue, Infra issue or script issue - to let leadership know
+   if scripts are breaking what is the root cause. Eiter automation team have to improve or dev team 
+   have to stabilize the application
+-> How do you keeping handling the passwords and tokens in scripts
+
+
+next items for today:
+
+understand how json file is imported in ts file and is it singleton or any utility needs to be created
+How json file is structured for out test data
+How same json file is used for data driven testing and test parametrization
+read testdata with json and use it in spec file
+read testdata with json and override its value and use it in spec file
+read testdata with json via POJO way and override its value and use it in spec file
+read testdata with json via POJO way and override its value via random generator methods like random firstname
+and use it in spec file
+Q - When json file is imported in spec file, is it imported as json obj or some other?
+    Once we import json object and make change in json obj then will original json obj will also 
+    be modified in json file?
+
+data driven testing for errors failures -see altman conduit example when we do data-driven testing
+- in API we do data driven testing to validate api errors and failures. 
+  Like running same api test with multiple diff data sets to validate diff api errors.
+Schema validation
+Also create documents of hierarchy of understanding how Test Datamanagement works in project
+keep status code as enums in framework
+
+/**
+🧠 What test.step() does
+
+    test.step('description', async () => { ... })
+    → Groups related actions inside a named step.
+    → Each step shows in the HTML report with pass/fail status and time.
+
+    ✅ Simple rule - Wrap each logical action (request, validation, log, etc.) inside a test.step.
+ */
+
+Logical interface groups
+
+   IRequestBuilder — methods that build the request (fluent API).
+
+   IExecutor — methods that execute the HTTP call (get/post/put/delete).
+
+   ILoggable — methods to fetch/clear logs (or push logs).
+
+   IApiClient — the composed interface used by tests (a combination).
+
+-> seperate loggers methods from IApiClient
+-> Create document how logger is leveraged in api client class and how to reset the logs in test
+   Why we need to do reset - bcoz in apichaining we can have multiple api calls and if we dont reset
+   then all logs will be accumulated and it will be hard to identify which log belongs to which api call.
+-> how logs are attached to report and why it is important?
+-> How logs and Error handling are related to each other and working together?
+-> Redability of test steps in report is very bad, how to improve that?
+
+
+
+1) IApiClient interface for defining api methods contract. And Y we are doing it and how it helps?
+2) Error handling in request-handler.ts - why we re-throw errors and how it helps?
+   created custom ApiError class for better error context
+3) In IApiClient implementation class we only return valid ok response and avoid doing validations there.
+   Reason is it will have diff api methods and each method can have different success criteria and even 
+   diff apis endpoints with same api method can have different success criteria.
+   so we tell users to do validations in spec files based on their needs.
+-> in spec file we mostly avoid using try and catch and if we use try and catch then it is must to throw error.
+   Why?
+-> make sure each utility have testing cases like how we have main method in java utils to tests
+   those utils methods.
+
+pending items
+
+1) .env files for local properties
+2) test data management
+3) logs file
+4) Schema validator
+5) Mocking examples
+6) CI integration
+7) framework documentation - like docs before methods, readme files, desing documentation,
+   components of framework, framework tech stack, what it supports etc.
+8) when a new resource joins how will be kt document , utils methods, etc
+9) what are best practices to follow
+
+
+Next Items:
+Introduction To Framework & Setup Project structure and dependencies
+Automate Test cases, Data Driven Tests and Execute test cases with Tags
+Automate End-To-Test Cases and Run Tests using Package.json file
+
+
+
+// Remember Prince tujhe sab nae automate karna hah and sab aana bhi nae chaiye practically
+u need to know conceptually but practically kuch hi karna hah 
+jaise
+API basics and arch - u should know must - this is theoretically and conceptually
+Postman - yes not to much but yes
+API - Only functional part u should know, mocking, microservices kaise test ki, 
+      ci gating me how it is helping and RCA debugging etc, metrics
+UI - 
+framework design - very imp
+
+Bas ita hi karna hah

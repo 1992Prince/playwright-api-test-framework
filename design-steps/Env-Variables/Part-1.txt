@@ -1,0 +1,68 @@
+1) 		In PW u can set baseUrl in config file in use fun
+
+	 use: {
+
+		 baseURL: 'http://localhost:3000',
+		}
+
+	and then inside test you can use forward slash - page.goto('/')
+	
+
+2) Suppose you need to change baseUrl for diff envs like for staging env url will be diff, for prod env it will be diff
+
+		This u can handle under projects section of config file.
+
+		projects: [
+			{
+				name: 'dev',
+				use: {
+					baseURL: 'http://dev.google.com',
+				}
+			},
+			{
+				name: 'stg',
+				use: {
+					baseURL: 'http://stg.google.com',
+				}
+			}
+		]
+
+		And now you can run the command - npx playwright test --project=dev
+		and now dev project baseURL will be used.
+
+3) What about your custom env variables?
+
+	Also you can't create your env variables inside config file.
+	One way is to create a new fixture for env variables and import it in tests.
+	
+4) What about if I have some credentials and I don't want to keep inside my framework even for local execution?
+
+	You can create .env file at root level and keep creds like below:
+	DB_USER = admin
+	DB_PASS = "password"
+	APP_URL=http://uitestingplayground.com/ajax
+
+	And now in your spec tests file you can use like below:
+	await page.goTo(process.env.URL)
+
+	also before using install the lib - npm i dotenv --save-dev --force
+
+	Then come to pw config file and add below line after import
+
+	require('dotenv').config();
+
+	in config file already above line is written and commented
+
+	also you can pass the env variable of .env file from command line also like
+
+	SET URL=url npx playwright test --project=dev
+	
+	
+5) One more way is using ternary operator i.e.
+   
+   baseURL: process.env.DEV === '1' ? 'http://localhost:4200',
+          : process.env.STAGING === '1' ? 'http://localhost:4202'
+		  : 'http://localhost:4201'
+		  
+		  
+

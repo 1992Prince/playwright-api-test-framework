@@ -1,0 +1,2 @@
+In this folder we can keep diff kinds of functions that is needed to do some repetitice data
+or may be set preconditions for out tests.

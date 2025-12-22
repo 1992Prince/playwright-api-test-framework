@@ -1,0 +1,28 @@
+# Git
+.git
+.gitignore
+
+# Node
+node_modules
+npm-debug.log
+yarn-error.log
+
+# Docker
+Dockerfile
+
+# Logs
+*.log
+
+# Test results
+test-results/
+playwright-report/
+
+# design
+design-steps/
+
+# Other
+.idea/
+.vscode/
+*.iml
+.github/
+README.md

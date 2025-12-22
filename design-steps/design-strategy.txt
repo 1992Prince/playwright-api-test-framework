@@ -1,0 +1,10 @@
+Every API req have basically 6 components - URL, [PATH and QUERY PARAMETERS], METHOD, HEADERS, BODY
+So if we keep all these components in test directly, it will be difficult to maintain and read.
+So we can create a design strategy to separate these components.
+
+So we created a class named RequestHandlerAPIClient which will have all these components as its properties 
+inside utils folder.
+And we will keep all api components inside this class as its methods.
+
+Fluent interface design pattern is used to chain all these methods while calling the api in test file.
+

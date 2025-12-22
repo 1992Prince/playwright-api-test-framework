@@ -1,0 +1,28 @@
+{
+    "Create And Delete Article Test": {
+        "article": {
+            "title": "AmadeusArticle - Delete Me1",
+            "description": "short summary",
+            "body": "Delete Me1",
+            "tagList": [
+                "Universe"
+            ]
+        }
+    },
+    "Error messages Validations Test": [
+        {
+            "user": {
+                "email": "d",
+                "password": "d",
+                "username": "d"
+            }
+        },
+        {
+            "user": {
+                "email": "ddddddddddddddddddddd",
+                "password": "ddddddddddddddddddddd",
+                "username": "ddddddddddddddddddddd"
+            }
+        }
+    ]
+}
