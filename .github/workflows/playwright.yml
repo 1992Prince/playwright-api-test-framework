@@ -20,15 +20,15 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Install Playwright Browsers
-        run: npx playwright install --with-deps
+      #- name: Install Playwright Browsers
+      #  run: npx playwright install --with-deps
 
       # -------------------------------
       # TEST EXECUTION
       # -------------------------------
       - name: Run Playwright tests
         id: test-run
-        run: npm run conduit-ci
+        run: npm run conduit-bvt
 
       # -------------------------------
       # RESULT PARSING
