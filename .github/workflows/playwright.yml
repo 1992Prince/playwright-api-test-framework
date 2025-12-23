@@ -5,6 +5,9 @@ on:
     branches: [ main, master ]
   pull_request:
     branches: [ main, master ]
+  # Cron job to run every day at 6 AM IST (00:30 UTC)
+  schedule:
+    - cron: '30 0 * * *'
 
 jobs:
   test:
@@ -81,7 +84,7 @@ jobs:
           username: princepandey155@gmail.com
           password: ${{ secrets.GMAIL_APP_PASSWORD }}
           subject: 'Playwright Test Report for ${{ github.repository }}: ${{ job.status }}'
-          to: princepandey155@gmail.com
+          to: princepandey155@gmail.com,princepandey1992@outlook.com
           from: GitHub Actions CI <notifications@example.com>
           html_body: |
             <!DOCTYPE html>
