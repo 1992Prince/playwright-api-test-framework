@@ -37,7 +37,7 @@ test('Get All Articles Test 1 @sanity', async ({ api, config}, testInfo) => {
 
     // Step 5 - Validate response
     const json = await response.json();
-    expect(response.status()).toBe(200);
+    expect(response.status()).toBe(2001);
 
     // schema validation
     await validateSchema('conduit/articles', 'GET_articles', await response.json());
@@ -71,7 +71,7 @@ test('Get All Articles Test 2 @sanity', async ({ api, config}, testInfo) => {
 
     // Step 5 - Validate response
     const json = await response.json();
-    expect(response.status()).toBe(200);
+    expect(response.status()).toBe(2001);
 
     // schema validation
     await validateSchema('conduit/articles', 'GET_articles', await response.json());
@@ -105,7 +105,7 @@ test('Get All Articles Test 3 @sanity', async ({ api, config}, testInfo) => {
 
     // Step 5 - Validate response
     const json = await response.json();
-    expect(response.status()).toBe(200);
+    expect(response.status()).toBe(2001);
 
     // schema validation
     await validateSchema('conduit/articles', 'GET_articles', await response.json());
@@ -139,7 +139,7 @@ test('Get All Articles Test 4 @sanity', async ({ api, config}, testInfo) => {
 
     // Step 5 - Validate response
     const json = await response.json();
-    expect(response.status()).toBe(200);
+    expect(response.status()).toBe(2001);
 
     // schema validation
     await validateSchema('conduit/articles', 'GET_articles', await response.json());

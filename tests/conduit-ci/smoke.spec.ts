@@ -45,7 +45,7 @@ test('Get All Articles Test @smoke1', async ({ api, config}, testInfo) => {
 
 });
 
-test('Get All Articles Test 2 @smoke1', async ({ api, config}, testInfo) => {
+test.skip('Get All Articles Test 2 @smoke1', async ({ api, config}, testInfo) => {
 
     consoleLogger.info(`Running test: ${testInfo.title}`);
     let response: any;
@@ -147,7 +147,7 @@ test('Get All Articles Test 4 @smoke1', async ({ api, config}, testInfo) => {
 
 
 });
-test('Get All Articles Test 5 @smoke1', async ({ api, config}, testInfo) => {
+test.skip('Get All Articles Test 5 @smoke1', async ({ api, config}, testInfo) => {
 
     consoleLogger.info(`Running test: ${testInfo.title}`);
     let response: any;

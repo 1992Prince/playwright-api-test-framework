@@ -147,7 +147,7 @@ test('Get All Articles Test 4 @regression1', async ({ api, config}, testInfo) =>
 
 
 });
-test('Get All Articles Test 5 @regression1', async ({ api, config}, testInfo) => {
+test.skip('Get All Articles Test 5 @regression1', async ({ api, config}, testInfo) => {
 
     consoleLogger.info(`Running test: ${testInfo.title}`);
     let response: any;

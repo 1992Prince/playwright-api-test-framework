@@ -42,7 +42,7 @@ jobs:
         run: |
           REPORT_FILE="test-results/jsonReport.json"
 
-          TOTAL=$(jq '.stats.total' $REPORT_FILE)
+          TOTAL=$(jq '.stats.expected + .stats.unexpected + .stats.flaky + .stats.skipped' $REPORT_FILE)
           PASSED=$(jq '.stats.expected + .stats.flaky' $REPORT_FILE)
           FAILED=$(jq '.stats.unexpected' $REPORT_FILE)
           SKIPPED=$(jq '.stats.skipped' $REPORT_FILE)
