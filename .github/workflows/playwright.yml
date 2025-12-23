@@ -18,7 +18,7 @@ jobs:
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
     - name: Run Playwright tests
-      run: npm run conduit-bvt
+      run: npx playwright test
       env:
         DB_HOST: localhost
         DB_USER: root
@@ -42,3 +42,78 @@ jobs:
         name: test-results
         path: test-results/
         retention-days: 30
+    - name: Send email report
+      if: always()
+      uses: dawidd6/action-send-mail@v3
+      with:
+        server_address: smtp.gmail.com
+        server_port: 465
+        # WARNING: Hardcoding secrets is a security risk.
+        # It is strongly recommended to use GitHub secrets instead.
+        username: princepandey155@gmail.com
+        password: ${{ secrets.GMAIL_APP_PASSWORD }}
+        subject: 'Playwright Test Report for ${{ github.repository }}: ${{ job.status }}'
+        # NOTE: Add one or more recipient email addresses here, separated by commas.
+        to: princepandey155@gmail.com
+        from: GitHub Actions CI <notifications@example.com>
+        html_body: |
+          <!DOCTYPE html>
+          <html>
+          <head>
+          <title>Playwright Test Execution Report</title>
+          <style>
+            body { font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f4f4f4; }
+            .container { max-width: 600px; margin: 20px auto; background-color: #ffffff; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+            .header { background-color: #24292e; color: #ffffff; padding: 20px; text-align: center; border-top-left-radius: 8px; border-top-right-radius: 8px; }
+            .header h1 { margin: 0; }
+            .content { padding: 20px; }
+            .footer { padding: 10px; font-size: 0.8em; text-align: center; color: #777; border-bottom-left-radius: 8px; border-bottom-right-radius: 8px; background-color: #f6f8fa; }
+            table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+            th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+            th { background-color: #f6f8fa; font-weight: bold; }
+            a { color: #0366d6; text-decoration: none; }
+            a:hover { text-decoration: underline; }
+          </style>
+          </head>
+          <body>
+          <div class="container">
+            <div class="header">
+              <h1>Playwright Test Report</h1>
+            </div>
+            <div class="content">
+              <h2>Job Status:
+                <span style="font-weight: bold; text-transform: uppercase; color: ${{ job.status == 'success' && '#28a745' || '#dc3545' }};">
+                  ${{ job.status }}
+                </span>
+              </h2>
+              <p>A test run has completed in your repository. Here is a summary:</p>
+              <table>
+                <tr>
+                  <th>Repository</th>
+                  <td><a href="${{ github.server_url }}/${{ github.repository }}">${{ github.repository }}</a></td>
+                </tr>
+                <tr>
+                  <th>Branch</th>
+                  <td><code>${{ github.ref_name }}</code></td>
+                </tr>
+                <tr>
+                  <th>Commit</th>
+                  <td><a href="${{ github.server_url }}/${{ github.repository }}/commit/${{ github.sha }}">${{ github.sha }}</a></td>
+                </tr>
+                <tr>
+                  <th>Triggered by</th>
+                  <td>${{ github.actor }}</td>
+                </tr>
+                <tr>
+                  <th>Workflow Run</th>
+                  <td><a href="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}">View Workflow Run</a></td>
+                </tr>
+              </table>
+              <p style="text-align:center; margin-top: 25px;">The full test report is available as a downloadable artifact in the workflow run page.</p>
+            </div>
+            <div class="footer">
+              <p>This is an automated notification from the GitHub Actions CI/CD pipeline.</p>
+            </div>
+          </div>
+          </body>
+          </html>
