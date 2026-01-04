@@ -36,6 +36,9 @@ This framework is designed with Shift-Left testing, CI readiness, and enterprise
 ├── fixtures/
 │   └── api.fixture.ts        # API, Config, DB & Auth fixtures
 │
+├── constants/
+│   └── api-error-codes.constants.ts # Centralized API error codes
+│
 ├── helpers/
 │   ├── createToken.ts        # Token-based auth (Conduit)
 │   └── autoAuthCreateToken.ts# OAuth2 auth (Vehicle service)

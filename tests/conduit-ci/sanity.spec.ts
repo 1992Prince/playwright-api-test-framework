@@ -2,6 +2,7 @@ import { expect } from '@playwright/test';
 import { consoleLogger } from '../../utils/consoleLoggerSingletonInstance';
 import { test } from '../../fixtures/api-fixture';
 import { validateSchema } from '../../utils/schema-validator';
+import { API_ERROR_CODES } from '../../constants/api-error-codes.constants';
 
 test.beforeAll('run once before all tests', async ({ api, config }) => {
 
@@ -37,7 +38,7 @@ test('Get All Articles Test 1 @sanity', async ({ api, config}, testInfo) => {
 
     // Step 5 - Validate response
     const json = await response.json();
-    expect(response.status()).toBe(2001);
+    expect(response.status()).toBe(API_ERROR_CODES.FORBIDDEN);
 
     // schema validation
     await validateSchema('conduit/articles', 'GET_articles', await response.json());
@@ -71,7 +72,7 @@ test('Get All Articles Test 2 @sanity', async ({ api, config}, testInfo) => {
 
     // Step 5 - Validate response
     const json = await response.json();
-    expect(response.status()).toBe(2001);
+    expect(response.status()).toBe(API_ERROR_CODES.FORBIDDEN);
 
     // schema validation
     await validateSchema('conduit/articles', 'GET_articles', await response.json());
@@ -105,7 +106,7 @@ test('Get All Articles Test 3 @sanity', async ({ api, config}, testInfo) => {
 
     // Step 5 - Validate response
     const json = await response.json();
-    expect(response.status()).toBe(2001);
+    expect(response.status()).toBe(API_ERROR_CODES.FORBIDDEN);
 
     // schema validation
     await validateSchema('conduit/articles', 'GET_articles', await response.json());
@@ -139,7 +140,7 @@ test('Get All Articles Test 4 @sanity', async ({ api, config}, testInfo) => {
 
     // Step 5 - Validate response
     const json = await response.json();
-    expect(response.status()).toBe(2001);
+    expect(response.status()).toBe(API_ERROR_CODES.FORBIDDEN);
 
     // schema validation
     await validateSchema('conduit/articles', 'GET_articles', await response.json());
@@ -173,7 +174,7 @@ test('Get All Articles Test 5 @sanity', async ({ api, config}, testInfo) => {
 
     // Step 5 - Validate response
     const json = await response.json();
-    expect(response.status()).toBe(200);
+    expect(response.status()).toBe(API_ERROR_CODES.OK);
 
     // schema validation
     await validateSchema('conduit/articles', 'GET_articles', await response.json());

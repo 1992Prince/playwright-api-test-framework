@@ -11,10 +11,13 @@ import { getUserByUserId } from '../../db/userQueries';
 test.beforeAll('run once before all tests', async ({ api, config }) => {
 
     consoleLogger.info('beforeAll: Starting auth token generation for user=%s', config.userEmail);
+    
 
 });
 
-
+//test.only('Get All Articles Test @smoke', async ({ api, config, db }, testInfo) => {
+// once you run db container then add db fixture in the test or uncomment above line and
+// comment below line
 test.only('Get All Articles Test @smoke', async ({ api, config, db }, testInfo) => {
 
     let response: any;
@@ -225,7 +228,8 @@ test.skip('Create And Delete Article [with modified payload] Test', async ({ api
 
         api.clearLogs();
 
-        expect(deleteResponse.status()).toBe(204);
+        // expect(deleteResponse.status()).toBe(204); // correct one
+        expect(deleteResponse.status()).toBe(201);
         consoleLogger.info('Step success: Article deleted slug=%s', slugId);
     } catch (err: any) {
         // 🔹 ERROR handling
